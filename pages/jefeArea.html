@@ -1,11 +1,36 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <title>Página Jefe de Área</title>
+  <meta charset="UTF-8" />
+  <title>Panel Jefe de Área</title>
 </head>
 <body>
-  <div id="contenido"></div>
+  <h1>👔 Panel Jefe de Área</h1>
+  <p>Contenido exclusivo para jefes de área.</p>
+
+  <section>
+    <h2>👥 Ver empleados a cargo</h2>
+    <button id="btnMostrarEmpleados">Mostrar empleados</button>
+    <div id="empleadosContainer"></div>
+  </section>
+
+  <section>
+    <h2>📋 Repartir misión del Administrador</h2>
+    <button id="btnRepartir">Repartir misión</button>
+  </section>
+
+  <section>
+    <h2>✅ Verificar tarea de empleado</h2>
+    <input type="text" id="inputEmpleadoId" placeholder="Ingrese ID del empleado">
+    <button id="btnVerificar">Verificar</button>
+    <div id="tareasContainer"></div>
+  </section>
+
   <script type="module" src="../dist/pages/jefeArea.js"></script>
+  <div id="tareasContainer"></div>
+
+<script type="module" src="../src/pages/usuario.ts"></script>
+
 </body>
 </html>
+
