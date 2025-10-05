@@ -2,10 +2,34 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Página Jefe de Área</title>
+  <title>Panel Jefe de Área</title>
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div id="contenido"></div>
-  <script type="module" src="../dist/pages/jefeArea.js"></script>
+  <h2>👔 Panel Jefe de Área</h2>
+
+  <section>
+    <h3>👥 Ver empleados a cargo</h3>
+    <button onclick="mostrarEmpleados()">Mostrar empleados</button>
+    <div id="listaEmpleados"></div>
+  </section>
+
+  <section>
+    <h3>📌 Repartir misión del Administrador</h3>
+    <button onclick="repartirMision()">Repartir misión</button>
+    <div id="mision"></div>
+  </section>
+
+  <section>
+    <h3>✅ Verificar tarea de empleado</h3>
+    <input type="text" id="idEmpleado" placeholder="Ingrese ID del empleado">
+    <button onclick="verificarTarea()">Verificar</button>
+    <div id="resultado"></div>
+  </section>
+
+  <p><a href="index.html">⬅️ Volver al inicio</a></p>
+
+  <!-- Aquí enlazas el script compilado desde TypeScript -->
+  <script src="jefeArea.js"></script>
 </body>
 </html>
