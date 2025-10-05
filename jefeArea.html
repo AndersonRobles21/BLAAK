@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<<<<<<< HEAD
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sistema de Gestión de Empleados</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: #f2f4f8;
+        margin: 0;
+        padding: 0;
+    }
+
+    header {
+        background-color: #003366;
+        color: white;
+        padding: 15px;
+        text-align: center;
+    }
+
+    main {
+        padding: 20px;
+    }
+
+    section {
+        background: white;
+        padding: 15px;
+        margin: 15px auto;
+        border-radius: 10px;
+        max-width: 800px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+
+    h2 {
+        color: #003366;
+    }
+
+    input, select {
+        display: block;
+        width: 95%;
+        padding: 8px;
+        margin: 5px 0 10px 0;
+    }
+
+    button {
+        background: #0078d7;
+        color: white;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin: 3px;
+    }
+
+    button:hover {
+        background: #005bb5;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    th, td {
+        border: 1px solid #ccc;
+        text-align: center;
+        padding: 8px;
+    }
+
+    th {
+        background-color: #e5e5e5;
+    }
+
+    #panel {
+        display: none;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+</head>
+<body>
+<header>
+    <h1>💼 Sistema de Gestión de Empleados</h1>
+</header>
+
+<main>
+    <!-- Registro -->
+    <section id="registro">
+        <h2>Nuevo Empleado</h2>
+        <input type="text" id="nombre" placeholder="Nombre completo">
+        <input type="text" id="usuario" placeholder="Usuario">
+        <input type="password" id="password" placeholder="Contraseña">
+        <label>Cargo al que se ingresa:</label>
+        <select id="cargo">
+            <option value="Administrador">Administrador</option>
+            <option value="Cargo Superior">Cargo Superior</option>
+            <option value="Jefe de Área">Jefe de Área</option>
+            <option value="Trabajador">Trabajador</option>
+        </select>
+        <input type="date" id="fechaIngreso">
+        <button onclick="registrarEmpleado()">Registrar</button>
+        <hr>
+        <h3>¿Ya eres empleado?</h3>
+        <button onclick="mostrarLogin()">Iniciar Sesión</button>
+    </section>
+
+    <!-- Login -->
+    <section id="login" class="hidden">
+        <h2>Inicio de Sesión</h2>
+        <input type="text" id="loginUsuario" placeholder="Usuario">
+        <input type="password" id="loginPassword" placeholder="Contraseña">
+        <button onclick="iniciarSesion()">Ingresar</button>
+        <button onclick="mostrarRegistro()">Volver al Registro</button>
+    </section>
+
+    <!-- Panel principal -->
+    <section id="panel">
+        <h2 id="tituloPanel"></h2>
+        <div id="contenidoPanel"></div>
+        <button onclick="cerrarSesion()">Cerrar Sesión</button>
+    </section>
+</main>
+
+<script>
+// ------------------ Datos simulados ------------------
+let empleados = JSON.parse(localStorage.getItem("empleados")) || [];
+let usuarioActivo = null;
+
+// ------------------ Registro ------------------
+function registrarEmpleado() {
+    const nombre = document.getElementById("nombre").value.trim();
+    const usuario = document.getElementById("usuario").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const cargo = document.getElementById("cargo").value;
+    const fecha = document.getElementById("fechaIngreso").value;
+
+    if (!nombre || !usuario || !password || !fecha) {
+        alert("⚠️ Todos los campos son obligatorios.");
+        return;
+    }
+
+    const id = Date.now(); // ID único
+    empleados.push({ id, nombre, usuario, password, cargo, fecha, tarea: "", cumple: false });
+    localStorage.setItem("empleados", JSON.stringify(empleados));
+    alert("✅ Empleado registrado correctamente.");
+    document.getElementById("nombre").value = "";
+    document.getElementById("usuario").value = "";
+    document.getElementById("password").value = "";
+    document.getElementById("fechaIngreso").value = "";
+}
+
+// ------------------ Login ------------------
+function mostrarLogin() {
+    document.getElementById("registro").classList.add("hidden");
+    document.getElementById("login").classList.remove("hidden");
+}
+
+function mostrarRegistro() {
+    document.getElementById("login").classList.add("hidden");
+    document.getElementById("registro").classList.remove("hidden");
+}
+
+function iniciarSesion() {
+    const usuario = document.getElementById("loginUsuario").value.trim();
+    const password = document.getElementById("loginPassword").value.trim();
+    const encontrado = empleados.find(e => e.usuario === usuario && e.password === password);
+
+    if (encontrado) {
+        usuarioActivo = encontrado;
+        document.getElementById("login").classList.add("hidden");
+        document.getElementById("panel").style.display = "block";
+        document.getElementById("tituloPanel").innerText = `Bienvenido, ${encontrado.nombre} (${encontrado.cargo})`;
+        mostrarPanelPorRol(encontrado.cargo);
+    } else {
+        alert("❌ Usuario o contraseña incorrectos.");
+    }
+}
+
+// ------------------ Panel dinámico ------------------
+function mostrarPanelPorRol(rol) {
+    const panel = document.getElementById("contenidoPanel");
+    panel.innerHTML = "";
+
+    switch (rol) {
+        case "Administrador":
+            panel.innerHTML = `
+                <button onclick="verCargos()">Ver Cargos y Empleados</button>
+                <button onclick="modificarCargo()">Modificar Cargo de Usuario</button>
+                <button onclick="asignarTareasPorCargo()">Asignar Tareas por Cargo</button>
+            `;
+            break;
+        case "Cargo Superior":
+            panel.innerHTML = `
+                <button onclick="contratarUsuario()">Contratar Nuevo Usuario</button>
+                <button onclick="despedirUsuario()">Despedir Empleado</button>
+                <button onclick="verCargos()">Ver Cargos y Empleados</button>
+                <button onclick="mostrarInforme()">Mostrar Informe del Empleado</button>
+            `;
+            break;
+        case "Jefe de Área":
+            panel.innerHTML = `
+                <button onclick="verificarTareas()">Verificar Cumplimiento de Tareas</button>
+                <button onclick="verEmpleadosACargo()">Ver Empleados a Cargo e Información</button>
+            `;
+            break;
+        case "Trabajador":
+            panel.innerHTML = `
+                <button onclick="verCargo()">Ver Cargo</button>
+                <button onclick="verTarea()">Ver Tarea Asignada</button>
+            `;
+            break;
+    }
+}
+
+// ------------------ Funciones por Rol ------------------
+
+// Ver empleados y cargos
+function verCargos() {
+    let html = "<h3>Empleados y sus Cargos</h3><table><tr><th>ID</th><th>Nombre</th><th>Cargo</th><th>Fecha Ingreso</th></tr>";
+    empleados.forEach(e => {
+        html += `<tr><td>${e.id}</td><td>${e.nombre}</td><td>${e.cargo}</td><td>${e.fecha}</td></tr>`;
+    });
+    html += "</table>";
+    document.getElementById("contenidoPanel").innerHTML = html;
+}
+
+// Asignar tareas por cargo
+function asignarTareasPorCargo() {
+    const cargo = prompt("¿A qué cargo deseas asignar una tarea?");
+    const tarea = prompt("Escribe la tarea para los empleados de ese cargo:");
+    empleados.forEach(e => {
+        if (e.cargo === cargo) e.tarea = tarea;
+    });
+    localStorage.setItem("empleados", JSON.stringify(empleados));
+    alert(`✅ Tarea asignada al cargo ${cargo}`);
+}
+
+// Ver empleados a cargo
+function verEmpleadosACargo() {
+    const area = "Producción";
+    const lista = empleados.filter(e => e.cargo === "Trabajador");
+    if (lista.length === 0) {
+        alert("No hay empleados registrados.");
+        return;
+    }
+    let html = "<h3>Empleados a Cargo</h3><table><tr><th>Nombre</th><th>Cargo</th><th>Tarea</th><th>Estado</th></tr>";
+    lista.forEach(e => {
+        html += `<tr><td>${e.nombre}</td><td>${e.cargo}</td><td>${e.tarea || "Sin tarea"}</td><td>${e.cumple ? "✅" : "❌"}</td></tr>`;
+    });
+    html += "</table>";
+    document.getElementById("contenidoPanel").innerHTML = html;
+}
+
+// Verificar cumplimiento de tareas
+function verificarTareas() {
+    const lista = empleados.filter(e => e.tarea);
+    let html = "<h3>Verificación de Tareas</h3><ul>";
+    lista.forEach(e => {
+        html += `<li>${e.nombre}: ${e.tarea} → ${e.cumple ? "Cumplida ✅" : "Pendiente ❌"}</li>`;
+    });
+    html += "</ul>";
+    document.getElementById("contenidoPanel").innerHTML = html;
+}
+
+// Ver tarea y cargo (trabajador)
+function verCargo() {
+    alert(`Tu cargo actual es: ${usuarioActivo.cargo}`);
+}
+
+function verTarea() {
+    alert(usuarioActivo.tarea ? `Tu tarea asignada es: ${usuarioActivo.tarea}` : "No tienes tareas asignadas aún.");
+}
+
+// Cerrar sesión
+function cerrarSesion() {
+    usuarioActivo = null;
+    document.getElementById("panel").style.display = "none";
+    document.getElementById("login").classList.remove("hidden");
+    document.getElementById("loginUsuario").value = "";
+    document.getElementById("loginPassword").value = "";
+}
+</script>
+=======
+  <meta charset="UTF-8">
+  <title>Página Jefe de Área</title>
+</head>
+<body>
+  <div id="contenido"></div>
+  <script type="module" src="../dist/pages/jefeArea.js"></script>
+>>>>>>> parent of b92c576 (Add interactive jefe de área panel features)
+</body>
+</html>
