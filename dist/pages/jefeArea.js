@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const contenedorEmpleados = document.getElementById("empleadosContainer");
     const contenedorTareas = document.getElementById("tareasContainer");
 
-    // --- Obtener empleados del localStorage ---
+    // --- Este obtiene los empleados del localStorage ---
     function obtenerEmpleados() {
         const data = localStorage.getItem("usuarios");
         return data ? JSON.parse(data) : [];
     }
 
-    // --- Mostrar empleados ---
+    // --- Muestra los empleados ---
     function mostrarEmpleados() {
         console.log("🔹 Clic en Mostrar empleados");
         const empleados = obtenerEmpleados();
@@ -31,15 +31,12 @@ document.addEventListener("DOMContentLoaded", () => {
         contenedorEmpleados.appendChild(lista);
     }
 
-    // --- Repartir misión ---
+    // --- Reparte las misiones ---
     function repartirMision() {
         console.log("📋 Clic en Repartir misión");
         const tareasGuardadas = localStorage.getItem("tareas");
         const tareas = tareasGuardadas ? JSON.parse(tareasGuardadas) : [];
         const nuevaTarea = {
-            descripcion: "Supervisar empleado PPP",
-            asignadaA: "Laura",
-            estado: "enviada"
         };
         tareas.push(nuevaTarea);
         localStorage.setItem("tareas", JSON.stringify(tareas));
