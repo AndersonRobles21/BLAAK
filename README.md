@@ -51,7 +51,7 @@ BLAACK busca centralizar la gestión de las operaciones internas de una empresa,
 - *Gestión de errores:* Validaciones y mensajes personalizados  
 
 ---
-# 🚀 Instalación
+#  Instalación
 
 Sigue estos pasos para instalar y ejecutar BLAACK en tu entorno local:
 
