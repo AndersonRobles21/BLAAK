@@ -81,42 +81,42 @@ En ese orden si se omite en run build no funcionara
 ---
 #  Uso del Sistema
 
-1. Inicia sesión o registrate según tu rol ( Ingeniero , Administrador, Jefe de Área o Empleado ).
+### 1. Inicia sesión o registrate según tu rol ( Ingeniero , Administrador, Jefe de Área o Empleado ).
 
 
-2. Realiza las acciones correspondientes a tu cargo:
+### 2. Realiza las acciones correspondientes a tu cargo:
 
-El Ingeniero gestiona y supervisa al personal.
+- El Ingeniero gestiona y supervisa al personal.
 
-El Administrador asigna tareas.
+- El Administrador asigna tareas.
 
-El Jefe de Área distribuye misiones.
+- El Jefe de Área distribuye misiones.
 
-El Empleado consulta y ejecuta sus tareas.
+- El Empleado consulta y ejecuta sus tareas.
 
 
-3. Observa los cambios en tiempo real .
+### 3. Observa los cambios en tiempo real .
 
 
 ---
- Ejemplo de Ejecución
+##  Ejemplo de Ejecución
 
-Inicio de sesión
+### Inicio de sesión
 
-Usuario: 2025-JFA-AMANDA-7894
-Contraseña: ********
-Bienvenido, Jefe de Área
+### Usuario: 2025-JFA-AMANDA-7894
+### Contraseña: ********
+### Bienvenido, Jefe de Área
 
-Asignación de tarea
+### Asignación de tarea
 
-Administrador -> Jefe de Área: "Preparar flores para exportación"
-Jefe de Área -> Empleado (juan perez): "Empacar 100 unidades de rosas rojas"
+### Administrador -> Jefe de Área: "Preparar flores para exportación"
+### Jefe de Área -> Empleado (juan perez): "Empacar 100 unidades de rosas rojas"
 
-Visualización del empleado
+### Visualización del empleado
 
-Empleado: juan perez
-Tarea asignada: Empacar 100 unidades de rosas rojas
-Estado: En progreso ✅
+### Empleado: juan perez
+### Tarea asignada: Empacar 100 unidades de rosas rojas
+### Estado: En progreso ✅
 
 
 ---
