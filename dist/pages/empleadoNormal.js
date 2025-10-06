@@ -1,76 +1,96 @@
-const usuarioActual = JSON.parse(localStorage.getItem("usuarioActual") || "{}")
-
-if (!usuarioActual.idEmpleado) {
-  alert("No hay sesión activa. Redirigiendo al login...")
-  window.location.href = "../yaEmpleado.html"
-}
-
-const btnVerInfo = document.getElementById("btnVerInfo")
-const btnVerTareas = document.getElementById("btnVerTareas")
-const resultado = document.getElementById("resultado")
-
-// Ver información del empleado
-btnVerInfo.addEventListener("click", () => {
-  resultado.innerHTML = `
-    <h2>👤 Mi Información</h2>
-    <p><strong>Nombre:</strong> ${usuarioActual.nombre}</p>
-    <p><strong>Cargo:</strong> ${usuarioActual.cargo}</p>
-    <p><strong>Email:</strong> ${usuarioActual.email}</p>
-    <p><strong>ID:</strong> ${usuarioActual.idEmpleado}</p>
-  `
-})
-
-// Ver tareas asignadas
-btnVerTareas.addEventListener("click", () => {
-  const tareas = JSON.parse(localStorage.getItem("tareas") || "[]")
-  const misTareas = tareas.filter((t) => t.asignadaA === usuarioActual.idEmpleado)
-
-  if (misTareas.length === 0) {
-    resultado.innerHTML = '<p class="info-message">✅ No tienes tareas asignadas aún.</p>'
-    return
-  }
-
-  let html = "<h2>📋 Mis Tareas</h2>"
-  misTareas.forEach((tarea, index) => {
-    const estadoClass = tarea.estado === "completada" ? "success" : tarea.estado === "en progreso" ? "warning" : "info"
-
-    html += `
-      <div class="task-item">
-        <div class="task-info">
-          <strong>${tarea.descripcion}</strong>
-          <span class="badge badge-${estadoClass}">${tarea.estado}</span>
-        </div>
-        ${
-          tarea.estado !== "completada"
-            ? `
-          <button class="btn btn-primary" onclick="cambiarEstadoTarea(${index}, '${tarea.estado}')">
-            ${tarea.estado === "pendiente" ? "▶️ Iniciar" : "✅ Completar"}
-          </button>
-        `
-            : ""
-        }
-      </div>
-    `
-  })
-
-  resultado.innerHTML = html
-})
-
-window.cambiarEstadoTarea = (index, estadoActual) => {
-  const tareas = JSON.parse(localStorage.getItem("tareas") || "[]")
-  const misTareas = tareas.filter((t) => t.asignadaA === usuarioActual.idEmpleado)
-  const tarea = misTareas[index]
-
-  const tareaIndex = tareas.findIndex((t) => t.descripcion === tarea.descripcion && t.asignadaA === tarea.asignadaA)
-
-  if (tareaIndex !== -1) {
-    if (estadoActual === "pendiente") {
-      tareas[tareaIndex].estado = "en progreso"
-    } else if (estadoActual === "en progreso") {
-      tareas[tareaIndex].estado = "completada"
+"use strict";
+document.addEventListener("DOMContentLoaded", () => {
+    console.log("✅ Página de empleado cargada");
+    const contenido = document.getElementById("contenido");
+    contenido.innerHTML = `
+    <h1>👷 Panel del Empleado</h1>
+    <p>Consulta tu información y gestiona tus tareas asignadas.</p>
+    <div>
+      <button id="btnVerInfo">📌 Ver mi información</button>
+      <button id="btnVerTareas">📝 Ver mis tareas</button>
+    </div>
+    <div id="resultado" style="margin-top:15px;"></div>
+  `;
+    const btnVerInfo = document.getElementById("btnVerInfo");
+    const btnVerTareas = document.getElementById("btnVerTareas");
+    const resultado = document.getElementById("resultado");
+    //  Obtener datos de LocalStorage
+    function obtenerTareas() {
+        const data = localStorage.getItem("tareas");
+        return data ? JSON.parse(data) : [];
     }
-
-    localStorage.setItem("tareas", JSON.stringify(tareas))
-    btnVerTareas.click()
-  }
-}
+    function guardarTareas(tareas) {
+        localStorage.setItem("tareas", JSON.stringify(tareas));
+    }
+    function obtenerUsuarioActual() {
+        const usuarioActual = localStorage.getItem("usuarioActual");
+        return usuarioActual ? JSON.parse(usuarioActual) : null;
+    }
+    //  Ver información básica del empleado
+    btnVerInfo.addEventListener("click", () => {
+        const empleado = obtenerUsuarioActual();
+        if (!empleado) {
+            resultado.innerHTML = `<p style="color:red">⚠️ No hay sesión activa. Inicie sesión primero.</p>`;
+            return;
+        }
+        resultado.innerHTML = `
+      <h2>👤 Mi Información</h2>
+      <p><b>Nombre:</b> ${empleado.nombre}</p>
+      <p><b>Cargo:</b> ${empleado.cargo}</p>
+      <p><b>Email:</b> ${empleado.email}</p>
+      <p><b>ID:</b> ${empleado.idEmpleado}</p>
+    `;
+    });
+    // Ver y gestionar tareas asignadas
+    btnVerTareas.addEventListener("click", () => {
+        const empleado = obtenerUsuarioActual();
+        if (!empleado) {
+            resultado.innerHTML = `<p style="color:red">⚠️ No hay sesión activa. Inicie sesión primero.</p>`;
+            return;
+        }
+        const tareas = obtenerTareas();
+        const tareasEmpleado = tareas.filter((t) => t.asignadaA.toLowerCase() === empleado.nombre.toLowerCase());
+        if (tareasEmpleado.length === 0) {
+            resultado.innerHTML = `<p>✅ No tienes tareas asignadas aún.</p>`;
+        }
+        else {
+            let html = `<h2>📋 Mis Tareas</h2><ul>`;
+            tareasEmpleado.forEach((t, index) => {
+                html += `
+          <li>
+            ${t.descripcion} — Estado: <b>${t.estado}</b>
+            <button class="btnCompletar" data-index="${index}">✔ Marcar completada</button>
+            <button class="btnPendiente" data-index="${index}">⏳ Marcar pendiente</button>
+          </li>
+        `;
+            });
+            html += `</ul>`;
+            resultado.innerHTML = html;
+            // Eventos para marcar tareas
+            document.querySelectorAll(".btnCompletar").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const idx = e.target.getAttribute("data-index");
+                    if (idx !== null) {
+                        const tareaGlobalIndex = tareas.findIndex((tg) => tg.asignadaA.toLowerCase() === empleado.nombre.toLowerCase() &&
+                            tg.descripcion === tareasEmpleado[+idx].descripcion);
+                        tareas[tareaGlobalIndex].estado = "Completada";
+                        guardarTareas(tareas);
+                        btnVerTareas.click(); // refresca la vista
+                    }
+                });
+            });
+            document.querySelectorAll(".btnPendiente").forEach(btn => {
+                btn.addEventListener("click", (e) => {
+                    const idx = e.target.getAttribute("data-index");
+                    if (idx !== null) {
+                        const tareaGlobalIndex = tareas.findIndex((tg) => tg.asignadaA.toLowerCase() === empleado.nombre.toLowerCase() &&
+                            tg.descripcion === tareasEmpleado[+idx].descripcion);
+                        tareas[tareaGlobalIndex].estado = "Pendiente";
+                        guardarTareas(tareas);
+                        btnVerTareas.click(); // refresca la vista
+                    }
+                });
+            });
+        }
+    });
+});

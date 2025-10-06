@@ -1,5 +1,5 @@
 export function getNuevoEmpleadoForm() {
-  return `
+    return `
     <h2>Formulario - Nuevo empleado</h2>
     <form id="formNuevoEmpleado">
       <label for="nombre">Nombre completo:</label><br>
@@ -23,16 +23,6 @@ export function getNuevoEmpleadoForm() {
         <option value="EMP">Empleado normal</option>
       </select><br><br>
 
-      <div id="subcargoContainer" style="display:none;">
-        <label for="subcargo">Tipo de empleado:</label><br>
-        <select id="subcargo" name="subcargo">
-          <option value="">-- Selecciona --</option>
-          <option value="Zunchador">Zunchador</option>
-          <option value="Empacador">Empacador</option>
-          <option value="Surtidor">Surtidor</option>
-        </select><br><br>
-      </div>
-
       <label for="password">Contraseña:</label><br>
       <input type="password" id="password" name="password" required><br><br>
 
@@ -41,18 +31,5 @@ export function getNuevoEmpleadoForm() {
 
       <button type="submit">Registrar</button>
     </form>
-
-    <script>
-      document.getElementById("cargo")?.addEventListener("change", function() {
-        const cargo = (this as HTMLSelectElement).value;
-        const subcargoContainer = document.getElementById("subcargoContainer");
-        if (cargo === "EMP") {
-          subcargoContainer!.style.display = "block";
-        } else {
-          subcargoContainer!.style.display = "none";
-        }
-      });
-    </script>
   `;
 }
-
