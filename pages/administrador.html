@@ -1,164 +1,50 @@
-<!-- pages/administrador.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Administrador</title>
-  <style>
-    body { font-family: Arial, sans-serif; margin: 20px; }
-    h1 { color: darkblue; }
-    .box { border: 1px solid #ccc; border-radius: 8px; padding: 15px; margin-bottom: 20px; }
-    .pendiente { color: orange; }
-    .enviada { color: blue; }
-    .finalizada { color: green; }
-    button { margin-left: 10px; }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Administrador - Sistema BLAAK</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="../styles/administrador.css" />
 </head>
 <body>
-  <h1>📋 Panel del Administrador</h1>
+  <div class="container">
+    <h1>📋 Panel del Administrador</h1>
 
-  <!-- Empleados -->
-  <div class="box">
-    <h2>👷 Empleados Registrados</h2>
-    <ul id="lista-empleados"></ul>
-  </div>
+    <div class="box">
+      <h2>👷 Empleados Registrados</h2>
+      <ul id="lista-empleados"></ul>
+    </div>
 
-  <!-- Crear tareas -->
-  <div class="box">
-    <h2>📝 Crear Nueva Tarea</h2>
+<div class="box">
+  <h2>📝 Crear Nueva Tarea</h2>
+  <div class="form-tarea">
+    <label for="input-tarea" class="sr-only">Descripción de la tarea</label>
     <input type="text" id="input-tarea" placeholder="Descripción de la tarea">
-    <label for="select-jefe">Enviar a:</label>
-    <select id="select-jefe">
-      <option value="Jefe de área">Jefe de área (por defecto)</option>
-      <option value="Jefe A">Jefe A</option>
-      <option value="Jefe B">Jefe B</option>
+
+    <label for="select-empleado" class="sr-only">Seleccionar empleado</label>
+    <select id="select-empleado" title="Seleccionar empleado">
+      <option value="">Seleccionar empleado</option>
     </select>
-    <button id="btn-agregar">➕ Agregar</button>
+  <button id="btn-agregar">➕ Agregar</button>
+  </div>
+</div>
+<div class="box">
+  <h2>📌 Tareas</h2>
+  <ul id="lista-tareas"></ul>
+</div>
+
+<div class="volver-inicio">
+  <a href="../index.html" class="btn-back">← Volver al inicio</a>
+</div>
+
+    <footer class="footer">
+      <p>Sistema de Gestión BLAAK</p>
+      <p>© 2025. BLAAK todos los derechos reservados</p>
+    </footer>
   </div>
 
-  <!-- Lista de tareas -->
-  <div class="box">
-    <h2>📌 Tareas</h2>
-    <ul id="lista-tareas"></ul>
-  </div>
-
-  <script type="module">
-    import { Administrador } from "../dist/pages/administrador.js";
-
-    const listaEmpleados = document.getElementById("lista-empleados");
-    const listaTareas = document.getElementById("lista-tareas");
-    const inputTarea = document.getElementById("input-tarea");
-    const btnAgregar = document.getElementById("btn-agregar");
-
-    // Crear administrador
-    const admin = new Administrador("Laura");
-
-    // Cargar empleados guardados en localStorage (clave: 'usuarios')
-    const usuariosGuardados = JSON.parse(localStorage.getItem('usuarios') || '[]');
-
-    // Función para mapear códigos de cargo a etiquetas legibles
-    function etiquetaCargo(codigo) {
-      switch ((codigo || '').toString().toUpperCase()) {
-        case 'ADM': return 'Administrador';
-        case 'JFA': return 'Jefe de área';
-        case 'ING': return 'Ingeniero';
-        case 'EMP': return 'Empleado normal';
-        default: return codigo || 'Empleado';
-      }
-    }
-
-    // Helper para poblar select de jefes
-    function poblarSelectJefes(usuarios) {
-      const select = document.getElementById('select-jefe');
-      if (!select) return;
-      // limpiar
-      select.innerHTML = '';
-      // opcion por defecto
-      const optDefault = document.createElement('option');
-      optDefault.value = 'Jefe de área';
-      optDefault.textContent = 'Jefe de área (por defecto)';
-      select.appendChild(optDefault);
-
-      // buscar usuarios con cargo 'JFA' o con texto que contenga 'jefe'
-      usuarios.forEach(u => {
-        const cargoCode = (u.cargo || '').toString().toUpperCase();
-        if (cargoCode === 'JFA' || (u.cargo || '').toString().toLowerCase().includes('jefe')) {
-          const opt = document.createElement('option');
-          opt.value = u.nombre || u.nombreCompleto || u.idEmpleado || 'Jefe de área';
-          opt.textContent = (u.nombre || u.nombreCompleto || opt.value) + ' - ' + etiquetaCargo(cargoCode);
-          select.appendChild(opt);
-        }
-      });
-    }
-
-    if (usuariosGuardados.length > 0) {
-      usuariosGuardados.forEach(u => {
-        // Se esperan campos: idEmpleado, nombre, cargo (código)
-        const nombre = u.nombre || u.nombreCompleto || ('Empleado ' + (u.idEmpleado || ''));
-        const cargo = etiquetaCargo(u.cargo || u.rol || 'EMP');
-        admin.registrarEmpleado(nombre, cargo);
-      });
-      // poblar jefes
-      poblarSelectJefes(usuariosGuardados);
-    } else {
-      // Fallback: ejemplos si no hay nada en localStorage
-      admin.registrarEmpleado("Ana", "Clasificador");
-      admin.registrarEmpleado("Luis", "Surtidor");
-      admin.registrarEmpleado("Marta", "Empacador");
-      // select deja la opcion por defecto
-    }
-
-    // Mostrar empleados
-    function mostrarEmpleados() {
-      listaEmpleados.innerHTML = "";
-      admin.obtenerEmpleados().forEach(emp => {
-        const li = document.createElement("li");
-        li.textContent = `${emp.cargo}: ${emp.nombre}`;
-        listaEmpleados.appendChild(li);
-      });
-    }
-
-    // Mostrar tareas
-    function mostrarTareas() {
-      listaTareas.innerHTML = "";
-      admin.obtenerTareas().forEach((tarea, index) => {
-        const li = document.createElement("li");
-          const asignada = tarea.asignadaA ? ` - Asignada a: ${tarea.asignadaA}` : '';
-          li.innerHTML = `
-            ${tarea.descripcion} ${asignada}
-            <span class="${tarea.estado}">(${tarea.estado})</span>
-            <button onclick="enviar(${index})">📤 Enviar</button>
-            <button onclick="finalizar(${index})">✅ Finalizar</button>
-          `;
-        listaTareas.appendChild(li);
-      });
-    }
-
-    // Crear tarea
-    btnAgregar.addEventListener("click", () => {
-      if (inputTarea.value.trim() !== "") {
-        admin.crearTarea(inputTarea.value.trim());
-        inputTarea.value = "";
-        mostrarTareas();
-      }
-    });
-
-    // Funciones globales para botones
-    window.enviar = (index) => {
-      const selectJefe = document.getElementById('select-jefe');
-      const jefe = selectJefe ? selectJefe.value : undefined;
-      admin.enviarTareaAJefe(index, jefe);
-      mostrarTareas();
-    };
-
-    window.finalizar = (index) => {
-      admin.finalizarTarea(index);
-      mostrarTareas();
-    };
-
-    // Inicial
-    mostrarEmpleados();
-    mostrarTareas();
-  </script>
+  <script src="/dist/pages/administrador.js"></script>
 </body>
 </html>
+
