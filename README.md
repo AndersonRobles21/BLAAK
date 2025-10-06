@@ -56,10 +56,20 @@ BLAAK busca centralizar la gestión de las operaciones internas de una empresa, 
 Sigue estos pasos para instalar y ejecutar BLAAK en tu entorno local:
 
 ```bash
-Para ejecutar 
-instalar nodes (NO SUBIRLOS)
+```bash
+# Clonar el repositorio
+git clone 
+
+# Entrar al directorio del proyecto
+cd blaak
+
+# Instalar dependencias
 npm install
-y para correr el programa con
+
+# Ejecutar el proyecto
+npm run dev
+
+# Para correr el programa con
 npm run build
 esto es para que funcuione en ts
 y a lo ultimo funciona con
