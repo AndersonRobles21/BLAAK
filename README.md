@@ -5,7 +5,7 @@ En este caso, se implementa en una *empresa de floricultura, facilitando la admi
 
 ---
 
-## 🌿 Descripción del Proyecto
+##  Descripción del Proyecto
 
 BLAACK busca centralizar la gestión de las operaciones internas de una empresa, mejorando la comunicación entre los distintos niveles jerárquicos y garantizando un flujo de trabajo eficiente.
 
