@@ -23,17 +23,6 @@ export function getNuevoEmpleadoForm(): string {
         <option value="EMP">Empleado normal</option>
       </select><br><br>
 
-      <!-- Subcargo (oculto por defecto) -->
-      <div id="subcargoContainer" style="display:none;">
-        <label for="subcargo">Tipo de empleado:</label><br>
-        <select id="subcargo" name="subcargo">
-          <option value="">-- Selecciona --</option>
-          <option value="Zunchador">Zunchador</option>
-          <option value="Empacador">Empacador</option>
-          <option value="Surtidor">Surtidor</option>
-        </select><br><br>
-      </div>
-
       <label for="password">Contraseña:</label><br>
       <input type="password" id="password" name="password" required><br><br>
 
