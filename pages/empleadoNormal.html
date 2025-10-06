@@ -2,10 +2,32 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Página Empleado Normal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Empleado - Sistema BLAAK</title>
+  <link rel="stylesheet" href="../styles/main.css" />
+  <link rel="stylesheet" href="../styles/empleadoNormal.css" />
 </head>
 <body>
-  <div id="contenido"></div>
-  <script type="module" src="../dist/pages/empleadoNormal.js"></script>
+  <div class="container">
+    <h1>👤 Panel del Empleado</h1>
+    
+    <div class="section">
+      <button id="btnVerInfo" class="btn btn-primary">📌 Ver mi información</button>
+      <button id="btnVerTareas" class="btn btn-primary">📝 Ver mis tareas</button>
+    </div>
+
+    <div id="resultado" class="section"></div>
+
+    <div class="back-btn-container">
+      <a href="../index.html" class="btn-back">← Volver al inicio</a>
+    </div>
+
+    <footer class="footer">
+      <p>Sistema de Gestión BLAAK</p>
+      <p>© 2025. BLAAK todos los derechos reservados</p>
+    </footer>
+  </div>
+
+  <script src="/dist/pages/empleadoNormal.js"></script>
 </body>
 </html>
