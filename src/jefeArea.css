@@ -1,0 +1,275 @@
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  color: #00d9ff;
+  text-align: center;
+}
+
+.panel-description {
+  text-align: center;
+  color: #b0b0b0;
+  margin-bottom: 30px;
+  font-size: 1.05rem;
+}
+
+section {
+  background: rgba(26, 26, 46, 0.6);
+  -webkit-backdrop-filter: blur(10px); 
+  backdrop-filter: blur(10px); 
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+}
+
+section h2 {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 15px;
+  color: #00d9ff;
+}
+
+button {
+  background: linear-gradient(135deg, #4169e1 0%, #5179f1 100%);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(65, 105, 225, 0.3);
+}
+
+button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(65, 105, 225, 0.5);
+}
+
+#empleadosContainer {
+  margin-top: 15px;
+}
+
+.empleados-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.empleado-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 8px;
+  padding: 15px;
+}
+
+.empleado-card h3 {
+  margin: 0 0 10px 0;
+  color: #5179f1;
+  font-size: 1.1em;
+}
+
+.empleado-card p {
+  margin: 5px 0;
+  color: #b0b0b0;
+  font-size: 0.9em;
+}
+
+.task-form {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input-tarea {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e8e8e8;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.input-tarea:focus {
+  outline: none;
+  border-color: #4169e1;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.1);
+}
+
+.select-empleado {
+  min-width: 200px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e8e8e8;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23b0b0b0' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 16px center;
+  padding-right: 40px;
+  transition: all 0.3s ease;
+}
+
+.select-empleado:focus {
+  outline: none;
+  border-color: #4169e1;
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.1);
+}
+
+#mensajeAsignacion {
+  margin-top: 15px;
+}
+
+.verificar-tarea-row {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.input-empleado-id {
+  flex: 1;
+  min-width: 200px;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #e8e8e8;
+  font-size: 14px;
+  font-family: inherit;
+  transition: all 0.3s ease;
+}
+
+.input-empleado-id:focus {
+  outline: none;
+  border-color: #4169e1;
+  background: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px rgba(65, 105, 225, 0.1);
+}
+
+#tareasContainer {
+  margin-top: 15px;
+}
+
+.tareas-empleado {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 8px;
+  padding: 15px;
+  margin-bottom: 15px;
+}
+
+.tareas-empleado h3 {
+  margin-top: 0;
+  color: #e8e8e8;
+}
+
+.tarea-item {
+  background: rgba(255, 255, 255, 0.05);
+  border-left: 4px solid rgba(255, 255, 255, 0.1);
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+}
+
+.tarea-item.completada {
+  border-left-color: #4ade80;
+}
+
+.tarea-item.pendiente {
+  border-left-color: #fbbf24;
+}
+
+.tarea-descripcion {
+  font-weight: 500;
+  margin-bottom: 5px;
+  color: #e8e8e8;
+}
+
+.tarea-estado {
+  color: #b0b0b0;
+  font-size: 0.9em;
+}
+
+.tareas-resumen {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.tareas-resumen p {
+  margin: 5px 0;
+  color: #b0b0b0;
+}
+
+.info-message {
+  color: #b0b0b0;
+  font-style: italic;
+}
+
+.error-message {
+  color: #f87171;
+  padding: 10px;
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  border-radius: 8px;
+}
+
+.success-message {
+  color: #4ade80;
+  padding: 10px;
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  border-radius: 8px;
+}
+
+.back-btn-container {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn-back {
+  text-decoration: none;
+  color: #00d9ff;
+  font-size: 16px;
+  transition: color 0.3s;
+  font-weight: 500;
+}
+
+.btn-back:hover {
+  color: #5179f1;
+}
+
+.footer {
+  margin-top: 40px;
+  text-align: center;
+  color: #666;
+  font-size: 0.9em;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  padding-top: 20px;
+}
+
+.footer p {
+  margin: 5px 0;
+}
