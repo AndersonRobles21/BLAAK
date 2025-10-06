@@ -3,18 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>B L A A K - Opciones Empleado</title>
+  <title>Sistema de Gestión BLAAK</title>
+  <link rel="stylesheet" href="styles/main.css" />
 </head>
 <body>
-  <h1>🟢 B L A A K</h1>
-  <p>Selecciona una opción:</p>
-  <button id="yaEmpleado">Ya eres empleado</button>
-  <button id="nuevoEmpleado">Nuevo empleado</button>
+  <div class="container">
+    <header class="header">
+      <h1>Sistema de Gestión <span class="brand">BLAAK</span></h1>
+      <p>Plataforma creada para la organización de empleados, asignación de tareas y control, con el fin de optimizar la eficiencia operativa de tu empresa.</p>
+    </header>
 
-  <!-- Aquí se cargará el formulario -->
-  <div id="resultado" style="margin-top:20px;"></div>
+    <div class="button-group">
+      <button id="yaEmpleado" onclick="window.location.href='yaEmpleado.html'">Ya eres empleado</button>
+      <button id="nuevoEmpleado" onclick="window.location.href='nuevoEmpleado.html'">Nuevo empleado</button>
+    </div>
+    </div>
 
-  <!-- IMPORTANTE: usar type="module" -->
+    <div id="resultado"></div>
+
+    <footer class="footer">
+      <p>Sistema de Gestión BLAAK</p>
+      <p>© 2025. BLAAK todos los derechos reservados</p>
+    </footer>
+  </div>
+
   <script type="module" src="./dist/opciones.js"></script>
 </body>
 </html>
