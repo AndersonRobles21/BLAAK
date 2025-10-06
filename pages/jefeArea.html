@@ -1,1 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jefe de Área - Sistema BLAAK</title>
 
+  <link rel="stylesheet" href="/src/styles/main.css" />
+  <link rel="stylesheet" href="/src/styles/jefeArea.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>👔 Panel Jefe de Área</h1>
+    <p class="panel-description">Contenido exclusivo para jefes de área.</p>
+
+    <section>
+      <h2>👥 Ver empleados a cargo</h2>
+      <button id="btnMostrarEmpleados">Mostrar empleados</button>
+      <div id="empleadosContainer"></div>
+    </section>
+
+ <section>
+  <h2>📋 Repartir misión del Administrador</h2>
+  
+  <div class="task-form">
+    <label for="inputTareaDescripcion" class="visually-hidden">Descripción de la tarea</label>
+    <input 
+      type="text" 
+      id="inputTareaDescripcion" 
+      placeholder="Descripción de la tarea" 
+      class="input-tarea">
+    <label for="selectEmpleado" class="visually-hidden">Seleccionar empleado</label>
+    <select id="selectEmpleado" class="select-empleado">
+      <option value="">Seleccionar empleado</option>
+    </select>
+
+    <button id="btnRepartir">Asignar tarea</button>
+  </div>
+  <div id="mensajeAsignacion"></div>
+</section>
+
+    <section>
+      <h2>✅ Verificar tarea de empleado</h2>
+      <div class="verificar-tarea-row">
+        <input type="text" id="inputEmpleadoId" placeholder="Ingrese ID del empleado" class="input-empleado-id">
+        <button id="btnVerificar">Verificar</button>
+      </div>
+      <div id="tareasContainer"></div>
+    </section>
+
+    <div class="back-btn-container">
+      <a href="../index.html" class="btn-back">← Volver al inicio</a>
+    </div>
+
+    <footer class="footer">
+      <p>Sistema de Gestión BLAAK</p>
+      <p>© 2025. BLAAK todos los derechos reservados</p>
+    </footer>
+  </div>
+
+
+  <script src="/dist/pages/jefeArea.js"></script>
+</body>
+</html>
