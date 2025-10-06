@@ -1,7 +1,7 @@
 #  BLAACK - Sistema de Gestión Inteligente
 
 *BLAACK* es un sistema de gestión inteligente diseñado para optimizar la eficacia y coordinación de los operadores dentro de una empresa.  
-En este caso, se implementa en una *empresa de floricultura, facilitando la administración de tareas, empleados y roles mediante una aplicación modular, interactiva y desarrollada con **TypeScript* bajo principios de diseño *SOLID*.
+En este caso, se implementa en una *empresa de floricultura, facilitando la administración de tareas, empleados y roles mediante una aplicación modular, interactiva y desarrollada con **TypeScript* .
 
 ---
 
