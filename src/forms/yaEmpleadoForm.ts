@@ -10,5 +10,5 @@ export function getYaEmpleadoForm(): string {
 
       <button type="submit">Ingresar</button>
     </form>
-  `;
+  `
 }
