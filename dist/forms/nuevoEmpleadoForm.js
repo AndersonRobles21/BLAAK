@@ -1,5 +1,5 @@
 export function getNuevoEmpleadoForm() {
-    return `
+  return `
     <h2>Formulario - Nuevo empleado</h2>
     <form id="formNuevoEmpleado">
       <label for="nombre">Nombre completo:</label><br>
@@ -23,7 +23,6 @@ export function getNuevoEmpleadoForm() {
         <option value="EMP">Empleado normal</option>
       </select><br><br>
 
-      <!-- Subcargo (oculto por defecto) -->
       <div id="subcargoContainer" style="display:none;">
         <label for="subcargo">Tipo de empleado:</label><br>
         <select id="subcargo" name="subcargo">
@@ -39,6 +38,12 @@ export function getNuevoEmpleadoForm() {
 
       <label for="confirmPassword">Confirmar contraseña:</label><br>
       <input type="password" id="confirmPassword" name="confirmPassword" required><br><br>
+
+      <button type="submit">Registrar</button>
+    </form>
+  `
+}
+
 
       <button type="submit">Registrar</button>
     </form>
