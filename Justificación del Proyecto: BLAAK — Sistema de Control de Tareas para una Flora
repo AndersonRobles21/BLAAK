@@ -1,0 +1,103 @@
+
+---
+
+# **Justificación del Proyecto: BLAAK — Sistema de Control de Tareas para una Flora**
+
+## **Elección del tema**
+
+El proyecto **BLAAK** surge como respuesta a la necesidad de optimizar la organización laboral dentro de una flora. En este tipo de entorno, distintos empleados realizan tareas operativas y repetitivas que requieren ser gestionadas y monitoreadas con precisión. En muchos casos, estas actividades se coordinan de forma manual o mediante herramientas poco efectivas, lo que genera desorganización, pérdida de tiempo y una comunicación deficiente entre los equipos de trabajo.
+
+Con BLAAK se busca digitalizar y automatizar los procesos de **registro, asignación, ejecución y seguimiento de tareas**, permitiendo a cada empleado visualizar sus funciones y al administrador tener control total del progreso de la producción. Esta plataforma garantiza una gestión eficiente, trazable y adaptable a cualquier tipo de empresa, especialmente aquellas que manejan procesos productivos como las floras.
+
+La elección de este tema responde tanto a su **aplicabilidad práctica en el sector laboral** como a la oportunidad de **aplicar de manera integral los conocimientos técnicos aprendidos en el trimestre**, en especial los relacionados con **programación orientada a objetos (POO), principios SOLID, modularización por capas y uso avanzado de TypeScript**.
+
+---
+
+## **Aplicación de conceptos del semestre**
+
+### **Programación Orientada a Objetos (POO)**
+
+El diseño de BLAAK se fundamenta en la programación orientada a objetos, aprovechando los conceptos de **clases, herencia, encapsulación y polimorfismo**.
+Dentro del sistema, se desarrolló la clase **Administrador**, que contiene propiedades como *nombre*, *empleados* y *tareas*, además de métodos específicos para registrar personal, asignar tareas y visualizar el progreso general.
+
+El modelo de usuarios se amplió mediante jerarquías que incluyen las clases derivadas **Usuario**, **Jefe de Área**, **Ingeniero** y **EmpleadoNormal**, cada una con responsabilidades y atributos definidos según su rol dentro del sistema. Esto permitió estructurar la lógica de negocio de manera clara y reutilizable.
+
+También se implementaron **interfaces** como `IUsuario` e `ITarea` para definir los contratos y las estructuras de datos que deben cumplir las diferentes clases. Estas interfaces contribuyen a la **abstracción y el desacoplamiento**, lo que facilita la ampliación del sistema en versiones futuras.
+
+---
+
+### **Tipos avanzados en TypeScript**
+
+El proyecto hace uso de **tipos avanzados** de TypeScript para garantizar mayor seguridad y control en el manejo de datos. Por ejemplo, se emplean **union types** (como `string | null`) en atributos opcionales, lo que permite manejar valores flexibles sin perder tipado estático.
+
+El sistema actual ya utiliza **tipos personalizados y enumeraciones**, lo que facilita la validación de los datos. En futuras versiones, se busca integrar **genéricos** en los repositorios para manejar diferentes tipos de entidades (usuarios, tareas, reportes, etc.) y aplicar **utility types** como `Partial`, `Pick` y `keyof`, con el fin de reforzar la validación y la reutilización del código.
+
+Estas mejoras futuras están orientadas a fortalecer la **seguridad del tipo**, hacer el sistema más escalable y adaptable a nuevas necesidades empresariales.
+
+---
+
+### **Manejo de errores**
+
+BLAAK incluye un manejo básico de errores mediante estructuras **try/catch** en operaciones críticas como la asignación de tareas o el registro de usuarios. Esto evita que el sistema se detenga ante entradas incorrectas o datos inexistentes.
+
+Actualmente, los errores se controlan de manera general, pero en futuras versiones se implementará una **gestión centralizada de errores**, con clases específicas como `ValidationError` o `NotFoundError`. Esto permitirá distinguir entre fallos de validación, persistencia o lógica, mejorando la **robustez, trazabilidad y mantenibilidad** del sistema.
+
+---
+
+### **Modularización por capas**
+
+La estructura actual del proyecto se organiza en carpetas como `src/pages` y `src/forms`, lo cual facilita la navegación del código. Sin embargo, el diseño se está migrando hacia una **arquitectura por capas**, que incluye:
+
+* **domain/**: para modelos y entidades principales.
+* **repositories/**: para el manejo de datos.
+* **services/**: donde se concentra la lógica de negocio.
+* **app/**: interfaz principal del sistema o CLI.
+* **utils/**: funciones auxiliares, validaciones y reportes.
+
+Esta modularización permite **mantener el código ordenado, escalable y fácil de mantener**, además de cumplir con los estándares de desarrollo profesional. Con esta estructura, cada módulo cumple una responsabilidad clara y puede ser modificado sin afectar a los demás.
+
+---
+
+### **Principios SOLID**
+
+El desarrollo de BLAAK se apoya en los **principios SOLID** para garantizar un diseño limpio y extensible:
+
+* **SRP (Single Responsibility Principle):** cada módulo cumple una única función; por ejemplo, los formularios manejan la interacción del usuario, mientras los servicios controlan la lógica de negocio.
+* **OCP (Open/Closed Principle):** el sistema está abierto a la extensión sin modificar su estructura central, lo que facilita agregar nuevos roles o funcionalidades.
+* **LSP (Liskov Substitution Principle):** las clases derivadas pueden sustituir a sus clases base sin alterar el funcionamiento general.
+* **ISP (Interface Segregation Principle):** se han definido interfaces específicas por rol para evitar dependencias innecesarias.
+* **DIP (Dependency Inversion Principle):** las capas superiores dependen de abstracciones, no de implementaciones concretas, lo que permite reemplazar componentes sin afectar al resto del sistema.
+
+Gracias a la aplicación de estos principios, BLAAK es un sistema **modular, mantenible y preparado para evolucionar**. En futuras versiones se incluirán repositorios genéricos y servicios independientes para cumplir completamente con los cinco principios.
+
+---
+
+### **CLI interactiva y reportes**
+
+Aunque BLAAK actualmente funciona como una **aplicación web**, el siguiente paso en su evolución es transformarlo en una **interfaz de línea de comandos (CLI)** desarrollada con la librería `@inquirer/prompts`. Esta mejora permitirá simular un entorno empresarial real, donde los diferentes roles interactúan directamente desde la consola.
+
+Además, se planea integrar un **módulo de generación de reportes** dentro de la carpeta `utils/`, que exporte información en formatos **JSON o CSV** mediante librerías como `papaparse` o `json2csv`. Estos reportes facilitarán la evaluación del rendimiento de los empleados y el control del progreso de las tareas, aportando valor práctico a las empresas que lo utilicen.
+
+---
+
+## **Decisiones de diseño y estructura**
+
+El diseño de BLAAK se realizó pensando en la **independencia entre componentes**. Cada capa y clase cumple un propósito definido, lo que permite modificar o ampliar el sistema sin generar conflictos internos.
+
+Los repositorios aplican principios como OCP y DIP, posibilitando la extensión de la persistencia sin alterar la lógica de negocio. Las interfaces están diseñadas por rol, en cumplimiento del ISP, y el manejador de errores mantiene el sistema estable frente a fallos inesperados.
+
+Gracias a estas decisiones, BLAAK cuenta con una **base sólida para futuras ampliaciones**, como la implementación de autenticación avanzada, dashboards visuales o integración con bases de datos en tiempo real.
+
+---
+
+## **Conclusión**
+
+El proyecto **BLAAK** representa una propuesta completa y funcional, capaz de optimizar la gestión interna de una flora y, potencialmente, de cualquier empresa que requiera control de tareas y roles. Su desarrollo demuestra la **aplicación efectiva de los conocimientos adquiridos** en el semestre, especialmente en los campos de **programación orientada a objetos, modularización, manejo de errores y principios SOLID**.
+
+Además, su estructura flexible y su potencial de expansión lo convierten en un sistema **escalable, profesional y alineado con buenas prácticas de desarrollo en TypeScript**.
+
+En futuras versiones, BLAAK continuará evolucionando hacia una **CLI totalmente interactiva**, con **reportes automatizados, repositorios genéricos y manejo avanzado de errores**, consolidándose como una herramienta inteligente, moderna y adaptable para la gestión eficiente de cualquier entorno laboral.
+
+---
+
+
