@@ -1,13 +1,13 @@
-#  BLAACK - Sistema de Gestión Inteligente
+#  BLAAK - Sistema de Gestión Inteligente
 
-*BLAACK* es un sistema de gestión inteligente diseñado para optimizar la eficacia y coordinación de los operadores dentro de una empresa.  
+*BLAAK* es un sistema de gestión inteligente diseñado para optimizar la eficacia y coordinación de los operadores dentro de una empresa.  
 En este caso, se implementa en una *empresa de floricultura, facilitando la administración de tareas, empleados y roles mediante una aplicación modular, interactiva y desarrollada con **TypeScript* .
 
 ---
 
 ##  Descripción del Proyecto
 
-BLAACK busca centralizar la gestión de las operaciones internas de una empresa, mejorando la comunicación entre los distintos niveles jerárquicos y garantizando un flujo de trabajo eficiente.
+BLAAK busca centralizar la gestión de las operaciones internas de una empresa, mejorando la comunicación entre los distintos niveles jerárquicos y garantizando un flujo de trabajo eficiente.
 
 ### Roles Principales
 
@@ -53,7 +53,7 @@ BLAACK busca centralizar la gestión de las operaciones internas de una empresa,
 ---
 #  Instalación
 
-Sigue estos pasos para instalar y ejecutar BLAACK en tu entorno local:
+Sigue estos pasos para instalar y ejecutar BLAAK en tu entorno local:
 
 ```bash
 Para ejecutar 
