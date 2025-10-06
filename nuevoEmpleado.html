@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Registro - Sistema de Gestión BLAAK</title>
+  <!-- Only CSS link, no inline styles or scripts -->
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Sistema de Gestión <span class="brand">BLAAK</span></h1>
+      <p>Registrarse como nuevo empleado</p>
+    </header>
+
+    <div class="form-container">
+      <h2 class="form-title">Formulario - Nuevo empleado</h2>
+      <form id="registerForm">
+        <div class="form-group">
+          <label for="nombre" class="form-label">Nombre completo:</label>
+          <input type="text" id="nombre" class="form-input" required placeholder="Ej: Juan Pérez">
+        </div>
+        
+        <div class="form-group">
+          <label for="email" class="form-label">Correo electrónico:</label>
+          <input type="email" id="email" class="form-input" required placeholder="Ej: juan@empresa.com">
+        </div>
+        
+        <div class="form-group">
+          <label for="cedula" class="form-label">Cédula:</label>
+          <input type="text" id="cedula" class="form-input" required placeholder="Ej: 1234567890">
+        </div>
+        
+        <div class="form-group">
+          <label for="anioIngreso" class="form-label">Año de ingreso:</label>
+          <input type="number" id="anioIngreso" class="form-input" required min="1900" max="2030" placeholder="Ej: 2023">
+        </div>
+        
+        <div class="form-group">
+          <label for="cargo" class="form-label">Cargo:</label>
+          <select id="cargo" class="form-select" required>
+            <option value="">-- Selecciona --</option>
+            <option value="ING">Ingeniero</option>
+            <option value="ADM">Administrador</option>
+            <option value="JFA">Jefe de Área</option>
+            <option value="EMP">Empleado</option>
+          </select>
+        </div>
+        
+        <div class="form-group">
+          <label for="newPassword" class="form-label">Contraseña:</label>
+          <input type="password" id="newPassword" class="form-input" required minlength="6" placeholder="Mínimo 6 caracteres">
+        </div>
+        
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirmar contraseña:</label>
+          <input type="password" id="confirmPassword" class="form-input" required placeholder="Repite la contraseña">
+        </div>
+        
+        <button type="submit" class="form-submit">Registrar</button>
+      </form>
+      
+      <div id="mensaje"></div>
+      
+      <a href="index.html" class="btn-back">← Volver al inicio</a>
+    </div>
+
+    <footer class="footer">
+      <p>Sistema de Gestión BLAAK</p>
+      <p>© 2025. BLAAK todos los derechos reservados</p>
+    </footer>
+  </div>
+  
+  <!-- External JavaScript file instead of inline script -->
+  <script src="dist/pages/nuevoEmpleado.js"></script>
+</body>
+</html>
