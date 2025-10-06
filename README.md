@@ -1,3 +1,6 @@
+https://youtu.be/_mRe9iJcRKs?si=uB71J3XOn0V14OUi
+Video Presentacion
+
 #  BLAAK - Sistema de Gestión Inteligente
 
 *BLAAK* es un sistema de gestión inteligente diseñado para optimizar la eficacia y coordinación de los operadores dentro de una empresa.  
