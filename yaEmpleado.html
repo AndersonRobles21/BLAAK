@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Iniciar - Sistema de Gestión BLAAK</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1>Sistema de Gestión <span class="brand">BLAAK</span></h1>
+      <p>Iniciar sesión como empleado existente</p>
+    </header>
+
+    <div class="form-container">
+      <h2 class="form-title">Formulario Sistema de Gestión BLAAK - Ya eres empleado</h2>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="idEmpleado" class="form-label">ID de Empleado:</label>
+          <input type="text" id="idEmpleado" class="form-input" required placeholder="Ej: 2023-EMP-NOMBRE-1234567890">
+        </div>
+        
+        <div class="form-group">
+          <label for="password" class="form-label">Contraseña:</label>
+          <input type="password" id="password" class="form-input" required>
+        </div>
+        
+        <button type="submit" class="form-submit">Ingresar</button>
+      </form>
+      
+      <div id="mensaje"></div>
+      
+      <a href="index.html" class="btn-back">← Volver al inicio</a>
+    </div>
+
+    <footer class="footer">
+      <p>Sistema de Gestión BLAAK</p>
+      <p>© 2025. BLAAK todos los derechos reservados</p>
+    </footer>
+  </div>
+  
+
+  <script src="dist/pages/yaEmpleado.js"></script>
+</body>
+</html>
