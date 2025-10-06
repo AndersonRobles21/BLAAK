@@ -41,11 +41,18 @@ export function getNuevoEmpleadoForm() {
 
       <button type="submit">Registrar</button>
     </form>
-  `
-}
 
-
-      <button type="submit">Registrar</button>
-    </form>
+    <script>
+      document.getElementById("cargo")?.addEventListener("change", function() {
+        const cargo = (this as HTMLSelectElement).value;
+        const subcargoContainer = document.getElementById("subcargoContainer");
+        if (cargo === "EMP") {
+          subcargoContainer!.style.display = "block";
+        } else {
+          subcargoContainer!.style.display = "none";
+        }
+      });
+    </script>
   `;
 }
+

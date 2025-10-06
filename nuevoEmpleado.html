@@ -46,7 +46,19 @@
             <option value="EMP">Empleado</option>
           </select>
         </div>
-        
+
+        <!-- 🔽 NUEVO CAMPO: aparece solo si se elige "Empleado" -->
+        <div class="form-group" id="subcargoContainer" style="display:none;">
+          <label for="subcargo" class="form-label">Tipo de empleado:</label>
+          <select id="subcargo" class="form-select">
+            <option value="">-- Selecciona --</option>
+            <option value="Zunchador">Zunchador</option>
+            <option value="Empacador">Empacador</option>
+            <option value="Surtidor">Surtidor</option>
+          </select>
+        </div>
+        <!-- 🔼 -->
+
         <div class="form-group">
           <label for="newPassword" class="form-label">Contraseña:</label>
           <input type="password" id="newPassword" class="form-input" required minlength="6" placeholder="Mínimo 6 caracteres">
@@ -71,7 +83,17 @@
     </footer>
   </div>
  
+  <script>
+    // 🔽 Mostrar el campo de tipo de empleado solo si el cargo es "Empleado"
+    document.getElementById("cargo")?.addEventListener("change", function() {
+      const cargo = this.value;
+      const subcargoContainer = document.getElementById("subcargoContainer");
+      subcargoContainer.style.display = cargo === "EMP" ? "block" : "none";
+    });
+  </script>
+
   <script src="dist/pages/nuevoEmpleado.js"></script>
 </body>
 </html>
+
 
