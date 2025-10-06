@@ -1,5 +1,5 @@
 export function getYaEmpleadoForm() {
-    return `
+  return `
     <h2>Formulario - Ya eres empleado</h2>
     <form id="formYaEmpleado">
       <label for="idEmpleado">ID de Empleado:</label><br>
@@ -10,5 +10,5 @@ export function getYaEmpleadoForm() {
 
       <button type="submit">Ingresar</button>
     </form>
-  `;
+  `
 }
