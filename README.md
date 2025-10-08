@@ -1,4 +1,4 @@
-https://youtu.be/_mRe9iJcRKs?si=uB71J3XOn0V14OUi
+https://youtube.com/shorts/tMeHfAGtVcI?feature=share
 Video Presentacion
 
 #  BLAAK - Sistema de Gestión Inteligente
