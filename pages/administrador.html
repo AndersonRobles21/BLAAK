@@ -4,8 +4,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Administrador - Sistema BLAAK</title>
-  <link rel="stylesheet" href="/src/styles/main.css" />
-  <link rel="stylesheet" href="/src/styles/administrador.css" />
+  <link rel="stylesheet" href="../src/styles/main.css" />
+  <link rel="stylesheet" href="../src/styles/administrador.css" />
 </head>
 <body>
   <div class="container">
@@ -16,27 +16,27 @@
       <ul id="lista-empleados"></ul>
     </div>
 
-<div class="box">
-  <h2>📝 Crear Nueva Tarea</h2>
-  <div class="form-tarea">
-    <label for="input-tarea" class="sr-only">Descripción de la tarea</label>
-    <input type="text" id="input-tarea" placeholder="Descripción de la tarea">
+    <div class="box">
+      <h2>📝 Crear Nueva Tarea</h2>
+      <div class="form-tarea">
+        <label for="input-tarea" class="sr-only">Descripción de la tarea</label>
+        <input type="text" id="input-tarea" placeholder="Descripción de la tarea">
 
-    <label for="select-empleado" class="sr-only">Seleccionar empleado</label>
-    <select id="select-empleado" title="Seleccionar empleado">
-      <option value="">Seleccionar empleado</option>
-    </select>
-  <button id="btn-agregar">➕ Agregar</button>
-  </div>
-</div>
-<div class="box">
-  <h2>📌 Tareas</h2>
-  <ul id="lista-tareas"></ul>
-</div>
+        <label for="select-empleado" class="sr-only">Seleccionar empleado</label>
+        <select id="select-empleado" title="Seleccionar empleado">
+          <option value="">Seleccionar empleado</option>
+        </select>
+      <button id="btn-agregar">➕ Agregar</button>
+      </div>
+    </div>
+    <div class="box">
+      <h2>📌 Tareas</h2>
+      <ul id="lista-tareas"></ul>
+    </div>
 
-<div class="volver-inicio">
-  <a href="../index.html" class="btn-back">← Volver al inicio</a>
-</div>
+    <div class="volver-inicio">
+      <a href="../index.html" class="btn-back">← Volver al inicio</a>
+    </div>
 
     <footer class="footer">
       <p>Sistema de Gestión BLAAK</p>
@@ -44,7 +44,8 @@
     </footer>
   </div>
 
-  <script src="/dist/pages/administrador.js"></script>
+  <script type="module" src="../dist/pages/administrador.js"></script>
 </body>
 </html>
+
 
